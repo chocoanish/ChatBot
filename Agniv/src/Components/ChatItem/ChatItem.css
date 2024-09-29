@@ -1,0 +1,34 @@
+.chatbox{
+    width: 100%;
+    height: 40px;
+    background-color: #2ffeca2b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50px;
+    position: relative;
+}
+
+.title{
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    overflow: hidden;
+}
+
+.dots{
+    color: white;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.dropdown{
+    position: absolute;
+    width: 100px;
+    height: 200px;
+    background-color: #1b9677;
+    border-radius: 10px;
+    margin: 220px 0 0 220px;
+}

@@ -1,0 +1,93 @@
+.chat_container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #07292A;
+}
+
+.Chat_Nav{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: end;
+    padding: 40px;
+}
+
+.profile-circle{
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border-radius: 100px;
+}
+
+.conversations_box{
+    width: 85%;
+    height: 90%;
+    margin-left: 50px;
+    margin-right: 100px;
+    background-color: #d9d9d921;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.conversations{
+    width: 100%;
+    height: 90%;
+    padding: 40px;
+    overflow: scroll;
+}
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;  
+}
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+.Query_Box{
+    width: 80%;
+    height: 40px;
+    background-color: #2ffeca2b;
+    border-radius: 50px;
+    border: 2px solid #2FFECB;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.Query_Box > input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    padding: 0 15px;
+}
+
+.Query_Box > div{
+    color: white;
+    cursor: pointer;
+}
+
+.circle{
+    width: 30px;
+    height: 30px;
+}
+
+.chit_chat{
+    width: 60%;
+    height: auto;
+    min-height: 20px;
+    background-color: #07292a70;
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: white;
+    margin: 10px;
+}
+
+
+.right{
+    margin-left: auto;
+}
