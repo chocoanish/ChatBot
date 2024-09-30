@@ -12,7 +12,7 @@ const Navbar = ({button_text,redirect}) => {
           <a href="" className="About Link">About</a>
           <a href="" className="Connect Link">Connect</a>
         </div>
-        <a href="/auth/login" className="Signup">
+        <a href={"/"+redirect} className="Signup">
             <div>{button_text}</div>
         </a>
       </div>
