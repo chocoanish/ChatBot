@@ -1,16 +1,14 @@
 .sidebar {
-    width: 360px;
+    width: 80px;
     height: 100%;
-    background-color: #0B3E3A;
+    background-color: #18181B;
     box-shadow: -6px 0px 20px black;
     padding: 20px;
     transition: width 1s ease-in;
     z-index: 2;
+    position: relative;
 }
 
-.close{
-    width: auto;
-}
 
 .ham-menu{
     width: 32px;
@@ -19,46 +17,28 @@
     cursor: pointer;
 }
 
-.addNoteSection{
-    width: 100%;
-    height: 60px;
-    padding: 10px 0;
-    margin: 20px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.addNoteSectionClose{
-    flex-direction: column;
-}
-
-.addNoteSection > img{
-    width: 80px;
-    height: 35px;
-    margin-bottom: 10px;
-}
-
-
-.add{
-    color: #2FFECB;
-    cursor: pointer;
-}
-.add > svg{
-    width: 32px;
-    height: 32px;
-}
-
-
-.chats{
-    width: 100%;
-    height: auto;
-}
-
-.chats > div{
+.logout{
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     color: white;
-    font-size: 14px;
-    margin: 10px 0;
-    font-weight: bold;
-    font-family: 'Poppins';
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 40px;
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+
+.logout:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar > div{
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

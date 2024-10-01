@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import './Sidebar.css'
 import hamMenu from '../../assets/menu.svg'
-import { Plus } from 'lucide-react';
-import Logo from '../../assets/Logo.png'
-import ChatItem from '../ChatItem/ChatItem';
+import { LogOut } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 
 const Sidebar = () => {
@@ -17,17 +16,15 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className={sidebar? "sidebar":"sidebar close"}>
+      <div className="sidebar">
+      <div>
         <div className='ham-menu' onClick={showsidebar} ><img src={hamMenu}/></div>
-      <div className={addButton? "addNoteSection": "addNoteSection addNoteSectionClose"}>
-        <img src={Logo}/>
-        <div className='add'><Plus/></div>
+        <Link to="/login" className='logout'>
+          <LogOut/>
+        </Link>
+        </div>
       </div>
-      <div className='chats'>
-        <div>All Chats</div>
-        <ChatItem title="Chat-1"/>
-      </div>
-      </div>
+      
     </>
   );
 };

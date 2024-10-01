@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import Navbar from "../../Components/Navbar/Navbar";
 
+
 const Login = ({ button_text }) => {
   //Functions
+  
 
-  //
 
   return (
     <>
       {/* Importing Navbar */}
       <Navbar button_text="Sign Up" redirect="signup" />
-
+    
       {/* Login */}
       <div className="container">
         <div className="login_LogBox">

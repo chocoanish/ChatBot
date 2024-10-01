@@ -1,22 +1,43 @@
 .chat_container{
     width: 100vw;
     height: 100vh;
-    background-color: #07292A;
+    background-color: #1E1E21;
 }
 
 .Chat_Nav{
     width: 100%;
     height: 120px;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     padding: 40px;
 }
 
+.Chat_Nav > div{
+    width: auto;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Chat_Nav > div > div{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    text-align: right;
+}
+
+.profile_role{
+    font-size: 12px;
+    margin-top: -2px;
+}
+
+
 .profile-circle{
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
     background-color: white;
     border-radius: 100px;
+    margin: 10px;
 }
 
 .conversations_box{
@@ -24,7 +45,7 @@
     height: 90%;
     margin-left: 50px;
     margin-right: 100px;
-    background-color: #d9d9d921;
+    background-color: transparent;
     padding-bottom: 60px;
     display: flex;
     flex-direction: column;
@@ -37,6 +58,7 @@
     height: 90%;
     padding: 40px;
     overflow: scroll;
+    margin-bottom: 20px;
 }
 ::-webkit-scrollbar {
     width: 0;
@@ -49,12 +71,13 @@
 .Query_Box{
     width: 80%;
     height: 40px;
-    background-color: #2ffeca2b;
+    background-color: #18181B;
     border-radius: 50px;
-    border: 2px solid #2FFECB;
+    border: 2px solid #2ffeca44;
     display: flex;
     justify-content: space-between;
     padding: 5px;
+    margin-bottom: 20px;
 }
 
 .Query_Box > input{
@@ -80,11 +103,14 @@
     width: 60%;
     height: auto;
     min-height: 20px;
-    background-color: #07292a70;
-    padding: 10px 20px;
+    background-color: #7b7b7c36;
+    padding: 30px 30px;
     border-radius: 50px;
-    color: white;
-    margin: 10px;
+    color: rgba(255, 255, 255, 0.768);
+    margin: 25px 10px;
+    font-size: 14px;
+    font-family: "Noto Sans", sans-serif;
+    word-spacing: 1px;
 }
 
 

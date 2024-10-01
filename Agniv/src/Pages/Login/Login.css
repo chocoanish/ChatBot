@@ -12,7 +12,7 @@
 
 .login_LogBox{
     position: relative;
-    width: 420px;
+    width: 300px;
     height: 500px;
     display: flex;
     justify-content: center;
@@ -216,3 +216,37 @@
     transform: translate(-10px);
   }
 }
+
+
+
+
+
+/* Responsive: Done */
+
+
+
+@media (max-width:376px) {
+  .ask{
+    margin: 10px 0 10px 0;
+    text-align: center;
+  }
+.form{
+    width: 350px;
+  }
+}
+
+@media (max-width: 321px){
+  .form{
+    width: 200px;
+  }
+  .login_LogBox{
+    width: 250px;
+}
+.logText{
+  font-size: 30px;
+}
+.ask{
+  text-align: center;
+}
+}
+

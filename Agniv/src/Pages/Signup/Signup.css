@@ -6,7 +6,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    background: url(../../assets/Pattern.svg);
 }
 .form{
     width: 400px;
@@ -207,4 +206,43 @@
   {
     transform: translate(-10px);
   }
+}
+
+
+
+/* Responsive: Done */
+
+
+@media(max-width: 426px){
+  .form{
+    width: 350px;
+  }
+  .LogBox{
+    width: 300px;
+  }
+}
+
+@media (max-width:376px) {
+  .ask{
+    margin: 10px 0 10px 0;
+    text-align: center;
+  }
+.form{
+    width: 350px;
+  }
+}
+
+@media (max-width: 321px){
+  .form{
+    width: 200px;
+  }
+  .LogBox{
+    width: 250px;
+}
+.logText{
+  font-size: 30px;
+}
+.ask{
+  text-align: center;
+}
 }
