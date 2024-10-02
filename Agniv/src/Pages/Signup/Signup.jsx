@@ -6,6 +6,8 @@ import axios from "axios";
 
 const Signup = ({ button_text }) => {
   //Functions
+  
+  const [isLoading, setIsLoading] = useState(false);
   const [inputs, setInputs] = useState({
     firstName: "",
     lastName: "",
@@ -33,16 +35,33 @@ const Signup = ({ button_text }) => {
   };
   localStorage.setItem("User_Data", JSON.stringify(userData));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) =>  {
     e.preventDefault();
-    axios
-      .post(
-        "https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signin",
-        userData
-      )
-      .then((response) => {
-        console.log(response.status, response.data.token);
+    const config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signup/',
+      headers: {
+        // You can add custom headers here if needed
+      }
+    };
+    
+    try {
+      const response = await axios(config.url, {
+        method: config.method,
+        data: userData, // Include userData in the request body
+        maxBodyLength: config.maxBodyLength,
+        headers: config.headers
       });
+    
+      console.log(response.status, response.data.token);
+      localStorage.setItem("User_Data", JSON.stringify(userData));
+      navigate('/login');// Redirect to login page after successful signup
+    } catch (error) {
+      console.error("Signup error:", error.response ? error.response.data : error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   //
@@ -58,7 +77,7 @@ const Signup = ({ button_text }) => {
           <span></span>
 
           {/* SignUp Parameters */}
-          <form className="form" onSubmit={handleSubmit}>
+          <form className="form" >
             <h1 className="logText">{button_text}</h1>
             <div className="entries">
               {/* Input First Name */}
@@ -139,8 +158,8 @@ const Signup = ({ button_text }) => {
 
               {/* After Successful SignUp redirecting to Login page */}
             </div>
-            <button className="submit">
-              <Link to="/login">{button_text}</Link>
+            <button type="submit" className="submit" onClick={handleSubmit} disabled={isLoading}>
+              {isLoading ? <div className="loader"></div> : button_text}
             </button>
           </form>
         </div>
