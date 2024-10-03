@@ -5,6 +5,7 @@ import './App.css'
 import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
 import Home from './Pages/Home/Home';
+import { UserProvider } from '../src/context/userId';
 
 
 const App = () => {
@@ -34,8 +35,11 @@ const App = () => {
   ])
   return (
     <>
+    <UserProvider>
     <RouterProvider router={router} />
-      {/* <Dashboard/> */}
+    {/* <Dashboard/> */}
+    </UserProvider>
+    
     </>
   )
 }

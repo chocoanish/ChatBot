@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Dashboard.css'
 import { ArrowUp, Paperclip } from "lucide-react";
 import Logo from "../../assets/Logo.png";
@@ -7,10 +7,14 @@ import { LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Messages from '../../Components/Messages/Messages';
 import axios from 'axios'
+import { useUser } from '../../context/userId';
 
 
 const Dashboard = ({ name, role }) => {
 
+  const { user_Id } = useUser();
+
+  console.log({user_Id});
 
   // Local Storage
   const fn = localStorage.getItem("User_Data");
@@ -21,13 +25,14 @@ const Dashboard = ({ name, role }) => {
   // States for Queries
   const [query, setQuery] = useState("");
   const [queryResponse, setQueryResponse] = useState("");
-  const [userId, setUserId] = useState("");
+  const [User_Id, setUser_Id] = useState("");
   // Queries
 
 
   const handleChange = (e) => {
-    const { value } = e.target;
+    const { value } = e.target;;
     setQuery(value);
+    console.log(value);
   };
 
   const handleQuery = async (e) => {
@@ -35,8 +40,9 @@ const Dashboard = ({ name, role }) => {
     const encodedQuery = encodeURIComponent(query);
     const token = localStorage.getItem("Bearer_Token");
     try {
+      const userId = localStorage.getItem("id");
       const response = await axios.get(
-        `https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/chat/query?query=${encodedQuery}&userId=${userId}/`,
+        `https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/chat/query?query=${encodedQuery}&`+userId,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -98,7 +104,7 @@ const Dashboard = ({ name, role }) => {
             {/* <div>
               <Paperclip />
             </div> */}
-            <input name='query' type="text" value={query + "userId"} onChange={handleChange} required />
+            <input name='query' type="text" value={query} onChange={handleChange} required />
             <button className="circle" onClick={handleQuery}>
               <ArrowUp />
             </button>

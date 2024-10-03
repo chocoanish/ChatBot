@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import axios from "axios";
+import { useUser } from '../../context/userId';
+
 
 const Login = ({ button_text }) => {
+
+  const { userId, setUserId } = useUser();
   //Functions
   const [inputs, setInputs] = useState({
     email: "",
@@ -27,18 +31,24 @@ const Login = ({ button_text }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signin/",
+        "https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signin",
         {
           email: inputs.email,
           password: inputs.password,
         }
       );
       console.log(response);
-      if (response.data && response.data.token) {
+      if (response.data && response.data.jwt) {
         localStorage.setItem("User_Email", inputs.email);
-        localStorage.setItem("Bearer_Token", response.data.token);
-        setUserId(response.data.userId || "defaultUserId"); // Use a default if userId is not provided
+        localStorage.setItem("Bearer_Token", response.data.jwt);
+        setUserId(response.data.message)
+        localStorage.setItem("id", response.data.message);
+        console.log(response.data.message);
+        setUserId(response.data.message || "defaultUserId"); // Use a default if userId is not provided
         navigate('/dashboard'); // Redirect to dashboard after successful login
+
+
+        
       } else {
         console.error("Login failed: No token received");
         setIsLoading(false);

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./Signup.css";
 import Navbar from "../../Components/Navbar/Navbar";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Signup = ({ button_text }) => {
+
+  const navigate = useNavigate();
   //Functions
   
   const [isLoading, setIsLoading] = useState(false);
@@ -37,26 +39,26 @@ const Signup = ({ button_text }) => {
 
   const handleSubmit = async (e) =>  {
     e.preventDefault();
-    const config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signup/',
-      headers: {
-        // You can add custom headers here if needed
-      }
-    };
-    
-    try {
-      const response = await axios(config.url, {
-        method: config.method,
-        data: userData, // Include userData in the request body
-        maxBodyLength: config.maxBodyLength,
-        headers: config.headers
-      });
-    
-      console.log(response.status, response.data.token);
-      localStorage.setItem("User_Data", JSON.stringify(userData));
-      navigate('/login');// Redirect to login page after successful signup
+      const config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signup',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      
+      try {
+        const response = await axios(config.url, {
+          method: config.method,
+          data: userData, // Include userData in the request body
+          maxBodyLength: config.maxBodyLength,
+          headers: config.headers
+        });
+      
+        console.log(response.status, response.data.token);
+        localStorage.setItem("User_Data", JSON.stringify(userData));
+        navigate('/login');
     } catch (error) {
       console.error("Signup error:", error.response ? error.response.data : error.message);
     } finally {
