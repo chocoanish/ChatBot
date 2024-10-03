@@ -41,9 +41,8 @@ const Login = ({ button_text }) => {
       if (response.data && response.data.jwt) {
         localStorage.setItem("User_Email", inputs.email);
         localStorage.setItem("Bearer_Token", response.data.jwt);
-        setUserId(response.data.message)
+        setUserId(response.data.message);
         localStorage.setItem("id", response.data.message);
-        console.log(response.data.message);
         setUserId(response.data.message || "defaultUserId"); // Use a default if userId is not provided
         navigate('/dashboard'); // Redirect to dashboard after successful login
 
@@ -113,7 +112,7 @@ const Login = ({ button_text }) => {
 
             {/* After Successful Login redirect to Dashboard */}
             <button type="submit" className="login_submit" onClick={handleSubmit} disabled={isLoading}>
-              {isLoading ? button_text : <div className="loader_box"><div className="loader"></div></div>}
+              {isLoading ? <div className="loader"></div> : button_text }
             </button>
           </form>
         </div>

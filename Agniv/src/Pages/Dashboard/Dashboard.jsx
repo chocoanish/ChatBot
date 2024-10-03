@@ -25,14 +25,12 @@ const Dashboard = ({ name, role }) => {
   // States for Queries
   const [query, setQuery] = useState("");
   const [queryResponse, setQueryResponse] = useState("");
-  const [User_Id, setUser_Id] = useState("");
   // Queries
 
 
   const handleChange = (e) => {
     const { value } = e.target;;
     setQuery(value);
-    console.log(value);
   };
 
   const handleQuery = async (e) => {
@@ -42,7 +40,7 @@ const Dashboard = ({ name, role }) => {
     try {
       const userId = localStorage.getItem("id");
       const response = await axios.get(
-        `https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/chat/query?query=${encodedQuery}&`+userId,
+        `http://localhost:8080/chat/query?query=${encodedQuery}&userId=`+userId,
         {
           headers: {
             Authorization: `Bearer ${token}`,
