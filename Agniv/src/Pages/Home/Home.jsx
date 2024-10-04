@@ -16,11 +16,6 @@ const Home = () => {
           Conversions
         </div>
         <div className="sub_head">
-          {/* Bridge the gap between visionaries with a chatbot that facilitates
-          seamless networking and collaboration. Designed to help founders
-          connect, share insights, and build meaningful relationships, our
-          chatbot makes it easier to grow your network and turn ideas into
-          action. */}
           Connect visionaries with a chatbot that fosters seamless networking and collaboration. Empower founders to share insights and build meaningful relationships effortlessly
         </div>
         <a href="/signup" className="SignUp">
@@ -33,10 +28,9 @@ const Home = () => {
         <div className="box">
           <span />
           <div className="content">
-            <h2>Card one</h2>
+            <h2>Founder's Interface</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Connect with our expert bot to resolve your challenges and gain valuable insights effortlessly.
             </p>
             <a href="#">Read More</a>
           </div>
