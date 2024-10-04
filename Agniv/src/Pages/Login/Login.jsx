@@ -37,6 +37,7 @@ const Login = ({ button_text }) => {
           password: inputs.password,
         }
       );
+      
       console.log(response);
       if (response.data && response.data.jwt) {
         localStorage.setItem("User_Email", inputs.email);

@@ -5,10 +5,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Signup = ({ button_text }) => {
-
   const navigate = useNavigate();
   //Functions
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const [inputs, setInputs] = useState({
     firstName: "",
@@ -17,6 +16,7 @@ const Signup = ({ button_text }) => {
     password: "",
     role: "",
     phone: "",
+    gender: "",
   });
 
   const handleChange = (e) => {
@@ -34,33 +34,38 @@ const Signup = ({ button_text }) => {
     password: inputs.password,
     role: inputs.role,
     phone: inputs.phone,
+    gender: inputs.gender,
   };
   localStorage.setItem("User_Data", JSON.stringify(userData));
 
-  const handleSubmit = async (e) =>  {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-      const config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: 'https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signup',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      
-      try {
-        const response = await axios(config.url, {
-          method: config.method,
-          data: userData, // Include userData in the request body
-          maxBodyLength: config.maxBodyLength,
-          headers: config.headers
-        });
-      
-        console.log(response.status, response.data.token);
-        localStorage.setItem("User_Data", JSON.stringify(userData));
-        navigate('/login');
+    setIsLoading(true);
+    const config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signup",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const response = await axios(config.url, {
+        method: config.method,
+        data: userData, // Include userData in the request body
+        maxBodyLength: config.maxBodyLength,
+        headers: config.headers,
+      });
+
+      console.log(response.status, response.data.token);
+      localStorage.setItem("User_Data", JSON.stringify(userData));
+      navigate("/login");
     } catch (error) {
-      console.error("Signup error:", error.response ? error.response.data : error.message);
+      console.error(
+        "Signup error:",
+        error.response ? error.response.data : error.message
+      );
     } finally {
       setIsLoading(false);
     }
@@ -79,7 +84,7 @@ const Signup = ({ button_text }) => {
           <span></span>
 
           {/* SignUp Parameters */}
-          <form className="form" >
+          <form className="form">
             <h1 className="logText">{button_text}</h1>
             <div className="entries">
               {/* Input First Name */}
@@ -90,7 +95,7 @@ const Signup = ({ button_text }) => {
                   name="firstName"
                   type="name"
                   value={inputs.firstName}
-                  onChange = {handleChange}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -98,14 +103,14 @@ const Signup = ({ button_text }) => {
               {/* Input Last Name */}
               <div>
                 <label>Last Name</label>
-                <input 
-                className="input"
+                <input
+                  className="input"
                   name="lastName"
                   value={inputs.lastName}
-                  onChange = {handleChange}
+                  onChange={handleChange}
                   type="name"
                   required
-                   />
+                />
               </div>
               <div>
                 <label>Email</label>
@@ -113,7 +118,7 @@ const Signup = ({ button_text }) => {
                   className="input"
                   name="email"
                   value={inputs.email}
-                  onChange = {handleChange}
+                  onChange={handleChange}
                   type="email"
                   required
                 />
@@ -125,7 +130,7 @@ const Signup = ({ button_text }) => {
                   name="password"
                   type="password"
                   value={inputs.password}
-                  onChange = {handleChange}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -133,21 +138,21 @@ const Signup = ({ button_text }) => {
               {/* Input Role: like Admin */}
               <div>
                 <label>Role</label>
-                <input 
+                <input
                   className="input"
                   name="role"
                   value={inputs.role}
-                  onChange = {handleChange}
+                  onChange={handleChange}
                   type="name"
                   required
-                 />
+                />
               </div>
 
               {/* Input Phone Number */}
               <div>
                 <label>Phone Number</label>
-                <input 
-                className="input"
+                <input
+                  className="input"
                   name="mobile"
                   value={inputs.phone}
                   onChange={(e) =>
@@ -157,10 +162,40 @@ const Signup = ({ button_text }) => {
                   required
                 />
               </div>
+              <div id="gender">
+                <p>Gender</p>
+                <div>
+                  <input
+                  className="radio"
+                    type="radio"
+                    id="male"
+                    name="gender"
+                    value="boy"
+                    onChange={handleChange}
+                  />
+                  <label for="male">Male</label>
+                </div>
+                <div>
+                  <input
+                  className="radio"
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    value="girl"
+                    onChange={handleChange}
+                  />
+                  <label for="female">Female</label>
+                </div>
+              </div>
 
               {/* After Successful SignUp redirecting to Login page */}
             </div>
-            <button type="submit" className="submit" onClick={handleSubmit} disabled={isLoading}>
+            <button
+              type="submit"
+              className="submit"
+              onClick={handleSubmit}
+              disabled={isLoading}
+            >
               {isLoading ? <div className="loader"></div> : button_text}
             </button>
           </form>

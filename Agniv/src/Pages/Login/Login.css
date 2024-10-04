@@ -1,96 +1,28 @@
-.login_container{
-    width: 100%;
-    height: 86vh;
-    /* background-color: #072929; */
-    background-color: black;
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-.login_LogBox{
-    position: relative;
-    width: 400px;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0px 30px;
-    transition: 0.5s;
-}
-
-.form{
-    position: relative;
-  left: 0;
-  padding: 40px 35px 0 35px;
-  background: rgba(255, 255, 255, 0.05);
+/* Main container styles */
+.login_container {
+  width: 100%;
+  height: 86vh;
+  background-color: black;
   backdrop-filter: blur(10px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  z-index: 1;
-  transform: 0.5s;
-  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.logText{
-    font-size: 40px;
-    cursor: default;
-    font-family: monospace;
+/* Login box styles */
+.login_LogBox {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 30px;
+  transition: 0.5s;
 }
 
-.ask{
-  font-family: 'Courier New', Courier, monospace;
-  margin: 30px 0 10px 0;
-}
-
-.login_entries{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin: 10px;
-}
-.login_entries > div{
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-}
-
-.input{
-    font-size: 18px;
-    height: 40px;
-    border: 2px solid #2FFECB;
-    background-color: #2ffeca2b;
-    border-radius: 20px;
-    padding: 15px;
-    outline: none;
-    font-family: monospace;
-}
-
-.login_submit{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 20px;
-    color: white;
-    padding: 20px;
-    border: 2px solid #2FFECB;
-    border-radius: 50px;
-    margin:  0 0 60px 0;
-    cursor: pointer;
-}
-
-.login_submit:hover{
-    background-color: #2ffeca65;
-}
-
-.login_LogBox::before
-{
-  content:' ';
+.login_LogBox::before {
+  content: ' ';
   position: absolute;
   top: 0;
   left: 50px;
@@ -103,9 +35,8 @@
   transition: 0.3s linear;
 }
 
-.login_LogBox::after
-{
-  content:'';
+.login_LogBox::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 50;
@@ -118,31 +49,107 @@
   filter: blur(30px);
 }
 
-.login_LogBox:hover:after,
-.login_LogBox:hover:before
-{
+.login_LogBox:hover:before,
+.login_LogBox:hover:after {
   transform: skewX(0deg);
   left: 20px;
   width: calc(100% - 90px);
-  
 }
 
+/* Form styles */
+.form {
+  position: relative;
+  left: 0;
+  padding: 40px 35px 0 35px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1;
+  transform: 0.5s;
+  color: #fff;
+}
 
+/* Text styles */
+.logText {
+  font-size: 40px;
+  cursor: default;
+  font-family: monospace;
+}
+
+.ask {
+  font-family: 'Courier New', Courier, monospace;
+  margin: 30px 0 10px 0;
+}
+
+/* Form entries styles */
+.login_entries {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+.login_entries > div {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+/* Input field styles */
+.input {
+  font-size: 18px;
+  height: 40px;
+  border: 2px solid #2FFECB;
+  background-color: #2ffeca2b;
+  border-radius: 20px;
+  padding: 15px;
+  outline: none;
+  font-family: monospace;
+}
+
+/* Submit button styles */
+.login_submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 20px;
+  color: white;
+  padding: 20px;
+  border: 2px solid #2FFECB;
+  border-radius: 50px;
+  margin: 0 0 60px 0;
+  cursor: pointer;
+}
+
+.login_submit:hover {
+  background-color: #2ffeca65;
+}
+
+.login_submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Gradient background for login box */
 /* 
-  background: linear-gradient(315deg, #ffbc00, #ff0058)
-  background: linear-gradient(315deg, #03a9f4, #ff0058) */
+background: linear-gradient(315deg, #ffbc00, #ff0058)
+background: linear-gradient(315deg, #03a9f4, #ff0058) */
 .login_LogBox:nth-child(1):before,
 .login_LogBox:nth-child(1):after,
 .login_LogBox:nth-child(2):before,
 .login_LogBox:nth-child(2):after,
 .login_LogBox:nth-child(3):before,
-.login_LogBox:nth-child(3):after
-{
+.login_LogBox:nth-child(3):after {
   /* background: linear-gradient(315deg, #4dff03, #00d0ff) */
   background: linear-gradient(315deg, #03a9f4, #ff0058)
 }
-.login_LogBox span
-{
+
+/* Additional hover effects */
+.login_LogBox span {
   display: block;
   position: absolute;
   top: 0;
@@ -153,9 +160,8 @@
   pointer-events: none;
 }
 
-.login_LogBox span::before
-{
-  content:'';
+.login_LogBox span::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -169,17 +175,17 @@
   animation: animate 2s ease-in-out infinite;
   box-shadow: 0 5px 15px rgba(0,0,0,0.08)
 }
-.login_LogBox:hover span::before
-{
+
+.login_LogBox:hover span::before {
   top: -50px;
   left: 50px;
   width: 100px;
   height: 100px;
   opacity: 1;
 }
-.login_LogBox span::after
-{
-  content:'';
+
+.login_LogBox span::after {
+  content: '';
   position: absolute;
   bottom: 0;
   right: 0;
@@ -195,8 +201,7 @@
   animation-delay: -1s;
 }
 
-.login_LogBox:hover span:after
-{
+.login_LogBox:hover span::after {
   bottom: -50px;
   right: 50px;
   width: 100px;
@@ -204,21 +209,8 @@
   opacity: 1;
 }
 
-@keyframes animate
-{
-  0%, 100%
-  {
-    transform: translateY(10px);
-  }
-  
-  50%
-  {
-    transform: translate(-10px);
-  }
-}
-
-
-.loader_box{
+/* Loader styles */
+.loader_box {
   width: 100px;
   height: 20px;
 }
@@ -227,53 +219,49 @@
   border: 2px solid #f3f3f3;
   border-top: 2px solid #2FFECB;
   border-radius: 50%;
-  box-shadow: 10px 10px;
+  box-shadow: 0px 0px 20px 3px #2FFECB;
   width: 20px;
   height: 20px;
-
   animation: spin 1s linear infinite;
 }
 
+/* Media queries for responsiveness */
+@media (max-width: 376px) {
+  .ask {
+      margin: 10px 0 10px 0;
+      text-align: center;
+  }
+  .form {
+      width: 350px;
+  }
+}
+
+@media (max-width: 321px) {
+  .form {
+      width: 200px;
+  }
+  .login_LogBox {
+      width: 250px;
+  }
+  .logText {
+      font-size: 30px;
+  }
+  .ask {
+      text-align: center;
+  }
+}
+
+/* Keyframes and animations */
+@keyframes animate {
+  0%, 100% {
+      transform: translateY(10px);
+  }
+  50% {
+      transform: translate(-10px);
+  }
+}
+
 @keyframes spin {
-  0% { transform:  rotate(0deg); }
-  100% { transform:  rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-
-.login_submit:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-
-
-
-
-/* Responsive: Done */
-
-
-
-@media (max-width:376px) {
-  .ask{
-    margin: 10px 0 10px 0;
-    text-align: center;
-  }
-.form{
-    width: 350px;
-  }
-}
-
-@media (max-width: 321px){
-  .form{
-    width: 200px;
-  }
-  .login_LogBox{
-    width: 250px;
-}
-.logText{
-  font-size: 30px;
-}
-.ask{
-  text-align: center;
-}
-}
-

@@ -1,13 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-const Messages = ({response}) => {
-  
+const Messages = ({ messages }) => {
   return (
     <>
-        <div className='chit_chat'>{response}</div>
-    </>
-  )
-}
+      {messages.map((message, index) => (
+        <div key={index} className={`message ${message.type}`}>
+          {message.content}
+        </div>
+      ))}
+      </>
+  );
+};
 
-export default Messages
-
+export default Messages;

@@ -1,87 +1,120 @@
-.container{
-    width: 100%;
-    height: 87vh;
-    background-color: #072929;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-.form{
-    width: 400px;
-    height: auto;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border-radius: 20px;
-    padding: 40px 35px 0 35px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10;
-
+/* Main container styles */
+.container {
+  width: 100%;
+  height: 87vh;
+  background-color: #072929;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-.logText{
-    font-size: 30px;
+/* Form styles */
+.form {
+  width: 400px;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 20px;
+  padding: 40px 35px 0 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
 }
 
-.entries{
-    width: 100%;
-    height: 300px;
-    overflow: scroll;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-.entries > div{
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
+.logText {
+  font-size: 30px;
 }
 
-.input{
-    height: 30px;
-    border: 2px solid #2FFECB;
-    background-color: #2ffeca2b;
-    border-radius: 20px;
-    margin-top: 5px;
-    padding: 15px;
-    outline: none;
+/* Form entries styles */
+.entries {
+  width: 100%;
+  height: 300px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.submit{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 20px;
-    color: white;
-    padding: 20px;
-    border: 2px solid #2FFECB;
-    border-radius: 50px;
-    margin: 30px 0;
-    cursor: pointer;
+.entries > div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
 }
 
-.submit:hover{
-    background-color: #2ffeca65;
+/* Gender selection styles */
+#gender {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.LogBox{
-    position: relative;
-    width: 420px;
-    height: 550px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0px 30px;
-    transition: 0.5s;
+#gender > p {
+  width: 100%;
 }
 
-.LogBox::before
-{
-  content:' ';
+#gender > div {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+#gender > div > label {
+  margin: auto 5px;
+}
+
+.radio {
+  width: 20px;
+  height: 20px;
+}
+
+/* Input field styles */
+.input {
+  height: 30px;
+  border: 2px solid #2FFECB;
+  background-color: #2ffeca2b;
+  border-radius: 20px;
+  margin-top: 5px;
+  padding: 15px;
+  outline: none;
+}
+
+/* Submit button styles */
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 20px;
+  color: white;
+  padding: 20px;
+  border: 2px solid #2FFECB;
+  border-radius: 50px;
+  margin: 30px 0;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: #2ffeca65;
+}
+
+/* LogBox styles */
+.LogBox {
+  position: relative;
+  width: 420px;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 30px;
+  transition: 0.5s;
+}
+
+.LogBox::before {
+  content: ' ';
   position: absolute;
   top: 0;
   left: 50px;
@@ -94,12 +127,11 @@
   transition: 0.3s linear;
 }
 
-.LogBox::after
-{
-  content:'';
+.LogBox::after {
+  content: '';
   position: absolute;
   top: 0;
-  left: 50;
+  left: 50px;
   width: 50%;
   height: 100%;
   background: #fff;
@@ -109,31 +141,31 @@
   filter: blur(30px);
 }
 
-.LogBox:hover:after,
-.LogBox:hover:before
-{
+.LogBox:hover:before,
+.LogBox:hover:after {
   transform: skewX(0deg);
   left: 20px;
   width: calc(100% - 90px);
-  
 }
 
-
+/* Gradient background for LogBox */
 /* 
-  background: linear-gradient(315deg, #ffbc00, #ff0058)
-  background: linear-gradient(315deg, #03a9f4, #ff0058) */
-  /* .LogBox:nth-child(2):before,
-  .LogBox:nth-child(2):after,
-  .LogBox:nth-child(3):before,
-  .LogBox:nth-child(3):after */
+background: linear-gradient(315deg, #ffbc00, #ff0058)
+background: linear-gradient(315deg, #03a9f4, #ff0058) */
+/* .LogBox:nth-child(2):before,
+.LogBox:nth-child(2):after,
+.LogBox:nth-child(3):before,
+.LogBox:nth-child(3):after */
+
+
 .LogBox:nth-child(1):before,
-.LogBox:nth-child(1):after
-{
+.LogBox:nth-child(1):after {
   /* background: linear-gradient(315deg, #4dff03, #00d0ff) */
   background: linear-gradient(315deg, #03a9f4, #ff0058)
 }
-.LogBox span
-{
+
+/* Additional hover effects */
+.LogBox span {
   display: block;
   position: absolute;
   top: 0;
@@ -144,9 +176,8 @@
   pointer-events: none;
 }
 
-.LogBox span::before
-{
-  content:'';
+.LogBox span::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -160,17 +191,17 @@
   animation: animate 2s ease-in-out infinite;
   box-shadow: 0 5px 15px rgba(0,0,0,0.08)
 }
-.LogBox:hover span::before
-{
+
+.LogBox:hover span::before {
   top: -50px;
   left: 50px;
   width: 100px;
   height: 100px;
   opacity: 1;
 }
-.LogBox span::after
-{
-  content:'';
+
+.LogBox span::after {
+  content: '';
   position: absolute;
   bottom: 0;
   right: 0;
@@ -186,8 +217,7 @@
   animation-delay: -1s;
 }
 
-.LogBox:hover span:after
-{
+.LogBox:hover span:after {
   bottom: -50px;
   right: 50px;
   width: 100px;
@@ -195,54 +225,47 @@
   opacity: 1;
 }
 
-@keyframes animate
-{
-  0%, 100%
-  {
-    transform: translateY(10px);
+/* Keyframes and animations */
+@keyframes animate {
+  0%, 100% {
+      transform: translateY(10px);
   }
-  
-  50%
-  {
-    transform: translate(-10px);
+  50% {
+      transform: translate(-10px);
   }
 }
 
-
-
-/* Responsive: Done */
-
-
-@media(max-width: 426px){
-  .form{
-    width: 350px;
+/* Media queries for responsiveness */
+@media (max-width: 426px) {
+  .form {
+      width: 350px;
   }
-  .LogBox{
-    width: 300px;
+  .LogBox {
+      width: 300px;
   }
 }
 
-@media (max-width:376px) {
-  .ask{
-    margin: 10px 0 10px 0;
-    text-align: center;
+@media (max-width: 376px) {
+  .ask {
+      margin: 10px 0 10px 0;
+      text-align: center;
   }
-.form{
-    width: 350px;
+  .form {
+      width: 350px;
   }
 }
 
-@media (max-width: 321px){
-  .form{
-    width: 200px;
+@media (max-width: 321px) {
+  .form {
+      width: 200px;
   }
-  .LogBox{
-    width: 250px;
-}
-.logText{
-  font-size: 30px;
-}
-.ask{
-  text-align: center;
-}
+  .LogBox {
+      width: 250px;
+  }
+  .logText {
+      font-size: 30px;
+  }
+  .ask {
+      text-align: center;
+  }
 }
