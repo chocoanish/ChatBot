@@ -218,12 +218,13 @@
   left: 0;
   padding: 20px 40px;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(25px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   z-index: 1;
   transform: 0.5s;
   color: #fff;
+  font-family: "Fredoka", sans-serif;
 }
 
 .container .box:hover .content

@@ -24,7 +24,6 @@
 
 .Chat_Nav>div {
   width: auto;
-  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,10 +50,9 @@
 
 /* Conversations Box */
 .conversations_box {
-  width: 85%;
+  width: 100%;
   height: 90%;
-  margin-left: 50px;
-  margin-right: 100px;
+  padding: 50px;
   background-color: transparent;
   padding-bottom: 60px;
   display: flex;
@@ -77,7 +75,7 @@
 .startConversation {
   width: 100%;
   height: 90%;
-  padding: 100px 120px;
+  padding: 0px 120px;
   overflow: scroll;
   margin-bottom: 20px;
   display: flex;
@@ -107,6 +105,7 @@
   background-color: transparent;
   color: white;
   padding: 0 15px;
+  margin-bottom: 50px;
 }
 
 
@@ -174,7 +173,7 @@
 
 /* Sidebar Styles */
 .sidebar {
-  width: 80px;
+  width: 55px;
   height: 100%;
   background-color: #18181B;
   box-shadow: -6px 0px 20px black;
@@ -426,19 +425,82 @@
   .chit_chat{
     font-size: 22px;
   }
+  .conversations{
+    padding: 0;
+  }
+  .message{
+    font-size: 12px;
+  }
+  .startConversation{
+    padding: 20px;
+    text-align: centerS;
+  }
 }
 
 @media (max-width: 426px) {
+  .sidebar{
+    display: none;
+  }
+  .conversations_box{
+    padding: 20px;
+    height: 80%;
+    overflow: hidden;
+  }
   .chit_chat{
     font-size: 22px;
+    width: 125px;
   }
-  .chat_container {
-    width: 85vw;
-  }
+
   .sidebar{
-    padding: 15px;
+    padding: 10px;
+  }
+  .conversations{
+    padding: 30px;
+  }
+  .loading-message{
+    padding: 6px;
+    height: 35px;
+    margin-top: 15px;
+    max-width: 60%;
+  }
+  .loading-text{
+    font-size: 8px;
+  }
+  .loading-content{
+    padding: 0;
   }
 }
+
+@media (max-width: 376px) {
+  .startConversation{
+    padding: 0;
+  }
+  .conversations{
+    padding: 30px;
+  }
+  .profile_role{
+    display: none;
+  }
+  .profile-name{
+    display: none;
+  }
+}
+
+@media (max-width: 321px) {
+  .startConversation{
+    padding: 0;
+  }
+  .message{
+    max-width: 80%;
+    margin: 10px 0;
+  }
+  
+  .sidebar{
+    display: none;
+  }
+}
+
+
 
 
 .markdown-content {
