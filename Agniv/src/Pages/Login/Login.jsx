@@ -3,12 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import axios from "axios";
-import { useUser } from '../../context/userId';
 
 
 const Login = ({ button_text }) => {
 
-  const { userId, setUserId } = useUser();
   //Functions
   const [inputs, setInputs] = useState({
     email: "",

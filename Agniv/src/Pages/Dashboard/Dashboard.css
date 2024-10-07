@@ -85,7 +85,7 @@
 }
 
 /* Query Box */
-.Query_Box {
+/* .Query_Box {
   width: 80%;
   height: 40px;
   background-color: #18181B;
@@ -106,6 +106,33 @@
   color: white;
   padding: 0 15px;
   margin-bottom: 50px;
+} */
+
+.Query_Box {
+  width: 80%;
+  background-color: #18181B;
+  border-radius: 15px;
+  border: 2px solid #2ffeca44;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.Query_Box > textarea {
+  width: 100%;
+  min-height: 60px;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  padding: 10px 15px;
+  margin-bottom: 0;
+  resize: vertical;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  resize: none;
 }
 
 

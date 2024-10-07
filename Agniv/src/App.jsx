@@ -5,6 +5,7 @@ import './App.css'
 import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
 import Home from './Pages/Home/Home';
+import OnBoardingForm from './Pages/OnBoardingForm/OnBoardingForm'
 import { UserProvider } from '../src/context/userId';
 
 
@@ -29,6 +30,10 @@ const App = () => {
         {
           path: "",
           element: <Home />
+        },
+        {
+          path: "/onboard",
+          element: <OnBoardingForm/>
         }
       ]
     }

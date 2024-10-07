@@ -9,15 +9,17 @@ const Signup = ({ button_text }) => {
   //Functions
 
   const [isLoading, setIsLoading] = useState(false);
-  const [inputs, setInputs] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    role: "",
-    phone: "",
-    gender: "",
-  });
+  const [inputs, setInputs] = useState(
+    {
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        role: "",
+        phone: "",
+        gender: ""
+      }
+    );
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -36,40 +38,12 @@ const Signup = ({ button_text }) => {
     phone: inputs.phone,
     gender: inputs.gender,
   };
-  localStorage.setItem("User_Data", JSON.stringify(userData));
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const directTo = () =>{
     setIsLoading(true);
-    const config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signup",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    try {
-      const response = await axios(config.url, {
-        method: config.method,
-        data: userData, // Include userData in the request body
-        maxBodyLength: config.maxBodyLength,
-        headers: config.headers,
-      });
-
-      console.log(response.status, response.data.token);
-      localStorage.setItem("User_Data", JSON.stringify(userData));
-      navigate("/login");
-    } catch (error) {
-      console.error(
-        "Signup error:",
-        error.response ? error.response.data : error.message
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    localStorage.setItem("User_Data", JSON.stringify(userData));
+    setIsLoading(false);
+    navigate("/onboard");
+  }
 
   //
 
@@ -173,7 +147,7 @@ const Signup = ({ button_text }) => {
                     value="boy"
                     onChange={handleChange}
                   />
-                  <label for="male">Male</label>
+                  <label htmlFor="male">Male</label>
                 </div>
                 <div>
                   <input
@@ -184,7 +158,7 @@ const Signup = ({ button_text }) => {
                     value="girl"
                     onChange={handleChange}
                   />
-                  <label for="female">Female</label>
+                  <label htmlFor="female">Female</label>
                 </div>
               </div>
 
@@ -193,7 +167,7 @@ const Signup = ({ button_text }) => {
             <button
               type="submit"
               className="submit"
-              onClick={handleSubmit}
+              onClick={directTo}
               disabled={isLoading}
             >
               {isLoading ? <div className="loader"></div> : button_text}
