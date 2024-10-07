@@ -31,17 +31,13 @@ const Dashboard = () => {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && e.shiftKey) {
-      // Add a new line when Shift+Enter is pressed
       e.preventDefault();
       setQuery(prevQuery => prevQuery + '\n');
     } else if (e.key === 'Enter' && !e.shiftKey) {
-      // Submit form when Enter is pressed without Shift
       e.preventDefault();
       handleQuery(e);
     }
   };
-
-  
 
   const handleQuery = async (e) => {
     e.preventDefault();
@@ -70,85 +66,19 @@ const Dashboard = () => {
       );
 
       setIsAnimating(false);
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { type: "bot", content: response.data.content },
-      ]);
-
-      // Set up SSE for streaming response
-      setupSSE(query);
+      // Bot message handling removed as per your request
     } catch (error) {
       console.error(
         "Query error:",
         error.response ? error.response.data : error.message
       );
       setIsAnimating(false);
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          type: "bot",
-          content: "Error occurred while processing your query..",
-          id: "error",
-        },
-      ]);
-      document
-        .getElementsByClassName("conversions")[0]
-        .scrollTo(0, document.body.scrollHeight);
+      // Error handling for bot messages removed
     }
 
     setQuery("");
   };
 
-
-  //Event Source
-  const setupSSE = (currentQuery) => {
-    const token = localStorage.getItem("Bearer_Token");
-    const userId = localStorage.getItem("id");
-    const streamUrl = `https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/stream/query?query=${currentQuery}userId=${userId}`;
-
-    if (eventSourceRef.current) {
-      eventSourceRef.current.close();
-    }
-
-    eventSourceRef.current = new EventSource(streamUrl, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    eventSourceRef.current.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      handleStreamedResponse(data);
-    };
-
-    eventSourceRef.current.onerror = (error) => {
-      console.error("SSE Error:", error);
-      eventSourceRef.current.close();
-    };
-  };
-
-  const handleStreamedResponse = (streamData) => {
-    const { content } = streamData;
-    setMessages(
-      (prevMessages) =>
-        (prevMessages = prevMessages.map((msg) => ({
-          ...msg,
-          content: msg.content + content,
-        })))
-    );
-  };
-
-  
-  useEffect(() => {
-    return () => {
-      if (eventSourceRef.current) {
-        eventSourceRef.current.close();
-      }
-    };
-  }, []);
-
-  //Event Source: End
-  
   useEffect(() => {
     if (conversationsRef.current) {
       conversationsRef.current.scrollTo({
@@ -157,6 +87,7 @@ const Dashboard = () => {
       });
     }
   }, [messages]);
+
   const clearLocalStorage = () => {
     localStorage.clear();
   };
