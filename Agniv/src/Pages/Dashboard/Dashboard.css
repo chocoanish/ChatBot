@@ -200,14 +200,16 @@
 
 /* Sidebar Styles */
 .sidebar {
-  width: 55px;
-  height: 100%;
-  background-color: #18181B;
-  box-shadow: -6px 0px 20px black;
-  padding: 20px;
-  transition: width 1s ease-in;
-  z-index: 2;
-  position: relative;
+  width: 60px;
+    height: 100%;
+    background-color: #18181B;
+    box-shadow: -6px 0px 20px black;
+    padding: 8px;
+    transition: width 1s ease-in;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .ham-menu {
@@ -279,7 +281,7 @@
   align-self: flex-end;
 }
 
-.bot {
+.assistant {
   background-color: #ada4f70f;
   color: white;
   border-bottom-left-radius: 5px;

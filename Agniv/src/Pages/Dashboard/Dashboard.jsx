@@ -16,7 +16,8 @@ const Dashboard = () => {
   const conversationsRef = useRef(null);
   const eventSourceRef = useRef(null);
   const textareaRef = useRef(null);
-
+const userId = localStorage.getItem("id");
+const token = localStorage.getItem("Bearer_Token");
   const fn = localStorage.getItem("User_Data");
   const parsedData = JSON.parse(fn);
   const fname = parsedData.firstName;
@@ -39,58 +40,109 @@ const Dashboard = () => {
     }
   };
 
-  const handleQuery = async (e) => {
+  const handleQuery = (e) => {
     e.preventDefault();
     if (query.trim() === "") return;
-
+    
     setStartConversation(true);
     setMessages((prevMessages) => [
       ...prevMessages,
       { type: "user", content: query },
     ]);
+    handleStreamResponse(query,userId,token);
     setQuery("");
-
+    
     setIsAnimating(true);
-    const encodedQuery = encodeURIComponent(query);
-    const token = localStorage.getItem("Bearer_Token");
-    const userId = localStorage.getItem("id");
 
-    try {
-      const response = await axios.get(
-        `https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/stream/query?query=${encodedQuery}&userId=${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setIsAnimating(false);
-      // Bot message handling removed as per your request
-    } catch (error) {
-      console.error(
-        "Query error:",
-        error.response ? error.response.data : error.message
-      );
-      setIsAnimating(false);
-      // Error handling for bot messages removed
-    }
-
-    setQuery("");
   };
 
-  useEffect(() => {
-    if (conversationsRef.current) {
-      conversationsRef.current.scrollTo({
-        top: conversationsRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  }, [messages]);
+
 
   const clearLocalStorage = () => {
     localStorage.clear();
   };
+
+
+  const handleStreamResponse = async (query, userId, token) => {
+    const encodedQuery = encodeURIComponent(query);
+    const url = `https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/stream/query?query=${encodedQuery}&userId=${userId}`;
+  
+    try {
+      const response = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+  
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+      
+        const chunk = decoder.decode(value);
+        const lines = chunk.split('\n');
+      
+        for (const line of lines) {
+          if (line.startsWith('data:')) {
+            try {
+              const jsonData = JSON.parse(line.slice(5));
+              setMessages((prevMessages) => {
+                const newMessages = [...prevMessages];
+                const lastMessage = newMessages[newMessages.length - 1];
+      
+                // Check if the last message is from the assistant
+                if (lastMessage.type === "assistant") {
+                  const newContent = jsonData.content.trim();
+                  const words = newContent.split(' ');
+      
+                  // Split and check for unique words not already in the message content
+                  const lastMessageWords = lastMessage.content.split(' ');
+                  const uniqueWords = words.filter(
+                    (word) => !lastMessageWords.includes(word)
+                  );
+      
+                  // Append only new, non-duplicate words
+                  if (uniqueWords.length > 0) {
+                    lastMessage.content += ' ' + uniqueWords.join(' ');
+                  }
+                } else {
+                  newMessages.push({ type: "assistant", content: jsonData.content });
+                }
+      
+                return newMessages;
+              });
+            } catch (error) {
+              // Ignore parsing errors and continue
+            }
+          }
+        }
+      }
+      
+   } catch (error) {
+      console.error('Error:', error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { type: "error", content: "An error occurred while fetching the response." }
+      ]);
+    } finally {
+      setIsAnimating(false);
+    }
+  };
+    useEffect(() => {
+      if (conversationsRef.current) {
+        conversationsRef.current.scrollTo({
+          top: conversationsRef.current.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    }, [messages]);
+  
 
   return (
     <div className="dashboard">
@@ -131,7 +183,11 @@ const Dashboard = () => {
             <div className="chit_chat" id="HELPUSER">
               How can I help you?
             </div>
-            <Messages messages={messages} />
+            {messages.map((message, index) => (
+            <div key={index} className={`message ${message.type}`}>
+              {message.content}
+            </div>
+          ))}
             {isAnimating && (
               <div className="loading-message">
                 <div className="loading-content">
