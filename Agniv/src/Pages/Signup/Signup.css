@@ -1,15 +1,17 @@
 /* Main container styles */
-.container {
+.signUpContainer {
   width: 100%;
-  height: 87vh;
-  background-color: #072929;
+  height: 60vh;
+  background-color: #0f172a;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  
+  margin: 170px  0 110px 0 ;
 }
-
+.SignUpContent{
+  overflow: hidden;
+}
 /* Form styles */
 .form {
   width: 400px;

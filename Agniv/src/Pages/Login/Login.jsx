@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import axios from "axios";
+import  useErrorHandler  from "../../hooks/useErrorHandler";
 
 
 const Login = ({ button_text }) => {
+  const handleError = useErrorHandler();
 
   //Functions4
   const [userId, setUserId] = useState("");
@@ -53,6 +55,7 @@ const Login = ({ button_text }) => {
         setIsLoading(false);
       }
     } catch (error) {
+      handleError(error);
       console.error(
         "Login error:",
         error.response ? error.response.data : error.message

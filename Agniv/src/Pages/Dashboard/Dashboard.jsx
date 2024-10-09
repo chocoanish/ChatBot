@@ -5,8 +5,7 @@ import Logo from "../../assets/Logo.png";
 import hamMenu from "../../assets/menu.svg";
 import { LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import Messages from "../../Components/Messages/Messages";
+import {remark} from 'remark'
 
 const Dashboard = () => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -14,7 +13,6 @@ const Dashboard = () => {
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState([]);
   const conversationsRef = useRef(null);
-  const eventSourceRef = useRef(null);
   const textareaRef = useRef(null);
 const userId = localStorage.getItem("id");
 const token = localStorage.getItem("Bearer_Token");
@@ -128,7 +126,7 @@ const token = localStorage.getItem("Bearer_Token");
       console.error('Error:', error);
       setMessages((prevMessages) => [
         ...prevMessages,
-        { type: "error", content: "An error occurred while fetching the response." }
+        { type: "assistant", content: "An error occurred while fetching the response." }
       ]);
     } finally {
       setIsAnimating(false);

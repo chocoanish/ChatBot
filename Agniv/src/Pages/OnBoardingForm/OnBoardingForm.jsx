@@ -3,12 +3,15 @@ import { ArrowRight, Users, Check, Plus, Trash2 } from 'lucide-react';
 import './OnBoardingForm.css'; 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { useSnackbar } from 'notistack';
 
 const OnBoardingForm = () => {
   const [isLoading, setIsLoading] = useState("");
-    const navigate = useNavigate();
-    const fn = localStorage.getItem("User_Data");
-    const parsedData = JSON.parse(fn);
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+  
+  const fn = localStorage.getItem("User_Data");
+  const parsedData = JSON.parse(fn);
   const [experiences, setExperiences] = useState([{
     companyName: '',
     jobTitle: '',
@@ -25,7 +28,6 @@ const OnBoardingForm = () => {
     lastName: parsedData.lastName,
     email: parsedData.email,
     password: parsedData.password,
-    role: parsedData.role,
     phone: parsedData.phone,
     gender: parsedData.gender,
     experienceList: experiences,
@@ -50,7 +52,11 @@ const OnBoardingForm = () => {
   };
   
   const removeExperience = (index) => {
-    setExperiences(experiences.filter((_, i) => i !== index));
+    if (experiences.length > 1) {
+      setExperiences(experiences.filter((_, i) => i !== index));
+    } else {
+      enqueueSnackbar('You must have at least one experience', { variant: 'warning' });
+    }
   };
 
   const updateExperience = (index, field, value) => {
@@ -65,15 +71,49 @@ const OnBoardingForm = () => {
       setSkills([...skills, { skill: newSkill.trim() }]);
       setNewSkill('');
     }
+    else if (skills.find(s => s.skill === newSkill.trim())) {
+      enqueueSnackbar('This skill already exists', { variant: 'warning' });
+    }
+    else {
+      enqueueSnackbar('Please enter a valid skill', { variant: 'warning' });
+    }
   };
 
   const removeSkill = (skillToRemove) => {
-    setSkills(skills.filter(s => s.skill !== skillToRemove));
+    if (skills.length > 1) {
+      setSkills(skills.filter(s => s.skill !== skillToRemove));
+    } else {
+      enqueueSnackbar('You must have at least one skill', { variant: 'warning' });
+    }
   };
 
+  const validateForm = () => {
+    let isValid = true;
+
+    if (experiences.length === 0) {
+      enqueueSnackbar('You must add at least one experience', { variant: 'error' });
+      isValid = false;
+    }
+
+    for (let exp of experiences) {
+      if (!exp.companyName || !exp.jobTitle || !exp.jobDescription || !exp.startDate || !exp.endDate) {
+        enqueueSnackbar('Please fill in all fields for each experience', { variant: 'error' });
+        isValid = false;
+        break;
+      }
+    }
+
+    if (skills.length === 0) {
+      enqueueSnackbar('You must add at least one skill', { variant: 'error' });
+      isValid = false;
+    }
+
+    return isValid  ;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setIsLoading(true);
     const config = {
       method: "post",
@@ -94,6 +134,7 @@ const OnBoardingForm = () => {
 
       console.log(response.status, response.data.token);
       localStorage.setItem("User_Data", JSON.stringify(userData));
+      enqueueSnackbar('Signup successful!', { variant: 'success' });
       navigate("/login");
     } catch (error) {
       console.log(userData);
@@ -102,6 +143,7 @@ const OnBoardingForm = () => {
         "Signup error:",
         error.response ? error.response.data : error.message
       );
+      enqueueSnackbar(error.response ? error.response.data.message : 'An error occurred during continue', { variant: 'error' });
     } finally {
       setIsLoading(false);
     }
@@ -110,7 +152,7 @@ const OnBoardingForm = () => {
 
 
   return (
-    <div className="container">
+    <div className="boardContainer">
       <div className="progress-sidebar">
         <div className="progress-sticky">
           {steps.map((step, index) => (

@@ -40,11 +40,11 @@ const App = () => {
   ])
   return (
     <>
+    
     <UserProvider>
     <RouterProvider router={router} />
     {/* <Dashboard/> */}
     </UserProvider>
-    
     </>
   )
 }

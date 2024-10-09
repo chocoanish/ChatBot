@@ -4,7 +4,7 @@
     flex-direction: row;
     justify-content: space-around;
     position: absolute;
-    top: 0;
+    top: 10px;
     z-index: 15;
 }
 
@@ -17,11 +17,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 15px;
 }
 
 .Link{
     color: white;
-    margin: auto 30px;
+    border-bottom: 2px solid transparent;
+    padding: 20px 30px;
 }
 
 .Link:hover{

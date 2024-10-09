@@ -1,7 +1,6 @@
 .hero_section{
     width: 100%;
-    height: 600px;
-    background-image: url(../../assets/Background.png);
+    height: 670px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -48,7 +47,7 @@
 }
 
 .Features{
-    background-color: black;
+    background-color: #0f172a;
     text-align: center;
 }
 .Headings{
@@ -64,7 +63,7 @@
   align-items: center;
   flex-wrap: wrap;
   padding: 40px 0;
-  background-color: black;
+  background-color: #0f172a;
   height: auto;
 }
 
@@ -131,7 +130,7 @@
 .container .box:nth-child(3):before,
 .container .box:nth-child(3):after
 {
-  background: linear-gradient(315deg, #4dff03, #00d0ff)
+  background: linear-gradient(315deg, #03a9f4, #ff0058)
 }
 
 .container .box span
@@ -274,7 +273,7 @@
 .pricing{
   text-align: center;
   padding: 50px;
-  background-color: black;
+  background-color: #0f172a;
 }
 
 .cards{

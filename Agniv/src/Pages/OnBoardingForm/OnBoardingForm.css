@@ -1,262 +1,269 @@
-.container {
-    min-height: 100vh;
-    background-color: #0f172a;
-    padding: 1rem;
-    display: flex;
-  }
-  
+.boardContainer {
+  min-height: 100vh;
+  background-color: #0f172a;
+  padding: 1rem;
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 40px 0;
+  background-color: #0f172a;
+  height: auto;
+}
+
+.progress-sidebar {
+  width: 260px;
+  margin-right: 1.5rem;
+}
+
+.progress-sticky {
+  position: sticky;
+  top: 1.5rem;
+}
+
+.progress-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  gap: 1rem;
+}
+
+.progress-line {
+  position: absolute;
+  left: 10%;
+  top: 60%;
+  width: 3px;
+  height: 3.5rem;
+  background-color: #334155;
+  z-index: -10;
+}
+
+.progress-line.completed {
+  background-color: #3b82f6;
+}
+
+.step-indicator {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.step-indicator.current,
+.step-indicator.completed {
+  background-color: #3b82f6;
+}
+
+.step-text {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.step-text.current {
+  color: white;
+  font-weight: 500;
+}
+
+.step-text.completed {
+  color: #3b82f6;
+}
+
+.main-card {
+  flex: 1;
+  max-width: 48rem;
+  background-color: #1e293b;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  color: white;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #e2e8f0;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #334155;
+  border: 1px solid #475569;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+  color-scheme: dark;
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+
+
+
+
+.address-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.city-state-zip {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.continue-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 0.375rem;
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+  gap: 0.5rem;
+}
+
+.continue-button>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.continue-button:hover {
+  background-color: #2563eb;
+}
+
+.experience-section {
+  border: 1px solid #475569;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #334155;
+  border: 1px solid #475569;
+  border-radius: 0.375rem;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+}
+
+.add-button:hover {
+  background-color: #475569;
+}
+
+.date-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #7f1d1d;
+  border: none;
+  border-radius: 0.375rem;
+  color: white;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #991b1b;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.skill-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #334155;
+  border-radius: 1rem;
+  color: white;
+  cursor: default;
+}
+
+.skill-input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
   .progress-sidebar {
-    width: 260px;
-    margin-right: 1.5rem;
+    display: none;
   }
-  
-  .progress-sticky {
-    position: sticky;
-    top: 1.5rem;
+
+  .container {
+    padding: 0.5rem;
   }
-  
-  .progress-step {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 0.75rem;
-    gap: 1rem;
-  }
-  
-  .progress-line {
-    position: absolute;
-    left: 10%;
-    top: 60%;
-    width: 3px;
-    height: 3.5rem;
-    background-color: #334155;
-    z-index: -10;
-  }
-  
-  .progress-line.completed {
-    background-color: #3b82f6;
-  }
-  
-  .step-indicator {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background-color: #334155;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 0.875rem;
-  }
-  
-  .step-indicator.current,
-  .step-indicator.completed {
-    background-color: #3b82f6;
-  }
-  
-  .step-text {
-    color: #94a3b8;
-    font-size: 0.875rem;
-  }
-  
-  .step-text.current {
-    color: white;
-    font-weight: 500;
-  }
-  
-  .step-text.completed {
-    color: #3b82f6;
-  }
-  
+
   .main-card {
-    flex: 1;
-    max-width: 48rem;
-    background-color: #1e293b;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    color: white;
-  }
-  
-  .form-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-  }
-  
-  .form-section {
-    margin-bottom: 1.5rem;
-  }
-  
-  .form-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #e2e8f0;
-  }
-  
-  .form-input,
-  .form-textarea,
-  .form-select {
-    width: 100%;
-    padding: 0.5rem;
-    background-color: #334155;
-    border: 1px solid #475569;
-    border-radius: 0.375rem;
-    margin-bottom: 1rem;
-    color-scheme: dark;
-  }
-  
-  .form-textarea {
-    min-height: 100px;
-    resize: vertical;
-  }
-  
-
-
-
-
-  .address-grid {
-    display: grid;
-    gap: 1rem;
-  }
-  
-  .city-state-zip {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 1rem;
-  }
-  
-  .checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-  
-  .continue-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    background-color: #3b82f6;
-    border: none;
-    border-radius: 0.375rem;
-    color: white;
-    cursor: pointer;
-    margin-left: auto;
-    gap: 0.5rem;
-  }
-
-  .continue-button > div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .continue-button:hover {
-    background-color: #2563eb;
-  }
-  
-  .experience-section {
-    border: 1px solid #475569;
-    border-radius: 0.5rem;
     padding: 1rem;
-    margin-bottom: 1rem;
   }
-  
-  .experience-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+
+  .city-state-zip {
+    grid-template-columns: 1fr;
   }
-  
-  .add-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #334155;
-    border: 1px solid #475569;
-    border-radius: 0.375rem;
-    color: white;
-    cursor: pointer;
-    height: 40px;
+
+  .employee-buttons {
+    grid-template-columns: 1fr;
   }
-  
-  .add-button:hover {
-    background-color: #475569;
-  }
-  
+
   .date-inputs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    grid-template-columns: 1fr;
   }
-  
-  .delete-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    background-color: #7f1d1d;
-    border: none;
-    border-radius: 0.375rem;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .delete-button:hover {
-    background-color: #991b1b;
-  }
-  
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-  
-  .skill-tag {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.25rem 0.75rem;
-    background-color: #334155;
-    border-radius: 1rem;
-    color: white;
-    cursor: default;
-  }
-  
-  .skill-input-group {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  @media (max-width: 768px) {
-    .progress-sidebar {
-      display: none;
-    }
-    
-    .container {
-      padding: 0.5rem;
-    }
-  
-    .main-card {
-      padding: 1rem;
-    }
-  
-    .city-state-zip {
-      grid-template-columns: 1fr;
-    }
-  
-    .employee-buttons {
-      grid-template-columns: 1fr;
-    }
-    
-    .date-inputs {
-      grid-template-columns: 1fr;
-    }
-  }
+}

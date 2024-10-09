@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./Signup.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useErrorHandler from "../../hooks/useErrorHandler";
+import { enqueueSnackbar } from "notistack";
 
 const Signup = ({ button_text }) => {
   const navigate = useNavigate();
   //Functions
-
+  const ErrorHandle = useErrorHandler();
   const [isLoading, setIsLoading] = useState(false);
   const [inputs, setInputs] = useState(
     {
@@ -15,7 +16,6 @@ const Signup = ({ button_text }) => {
         password: "",
         firstName: "",
         lastName: "",
-        role: "",
         phone: "",
         gender: ""
       }
@@ -29,31 +29,83 @@ const Signup = ({ button_text }) => {
     });
   };
 
-  const userData = {
-    firstName: inputs.firstName,
-    lastName: inputs.lastName,
-    email: inputs.email,
-    password: inputs.password,
-    role: inputs.role,
-    phone: inputs.phone,
-    gender: inputs.gender,
+  const validateInputs = () => {
+    const errors = [];
+
+    if (!inputs.firstName.trim()) {
+      errors.push("First name is required");
+    }
+
+    if (!inputs.lastName.trim()) {
+      errors.push("Last name is required");
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!inputs.email.trim() || !emailRegex.test(inputs.email)) {
+      errors.push("Valid email is required");
+    }
+
+    if (inputs.password.length < 8) {
+      errors.push("Password must be at least 8 characters long");
+    }
+
+    const phoneRegex = /^\d{10}$/;
+    if (!inputs.phone.trim() || !phoneRegex.test(inputs.phone)) {
+      errors.push("Valid 10-digit phone number is required");
+    }
+
+    if (!inputs.gender) {
+      errors.push("Please select a gender");
+    }
+
+    return errors;
   };
-  const directTo = () =>{
-    setIsLoading(true);
-    localStorage.setItem("User_Data", JSON.stringify(userData));
-    setIsLoading(false);
-    navigate("/onboard");
-  }
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validateInputs();
+    
+    if (errors.length === 0) {
+      setIsLoading(true);
+      // Simulating an API call
+      setTimeout(() => {
+        const userData = {
+          firstName: inputs.firstName,
+          lastName: inputs.lastName,
+          email: inputs.email,
+          password: inputs.password,
+          phone: inputs.phone,
+          gender: inputs.gender,
+        };
+        localStorage.setItem("User_Data", JSON.stringify(userData));
+        setIsLoading(false);
+        enqueueSnackbar('Signup successful!', { variant: 'success' });
+        navigate("/onboard");
+      }, 1500);
+    } else {
+      if (errors.length === 1) {
+        enqueueSnackbar(`Please check the ${errors[0]} field`, { variant: 'error' });
+      } else if (errors.length <= 3) {
+        errors.forEach(error => {
+          enqueueSnackbar(`Please check the ${error} field`, { variant: 'error' });
+        });
+      } else {
+        enqueueSnackbar('Please fill all the fields correctly', { variant: 'error' });
+      }
+    }
+  };
 
   //
 
   return (
     <>
+    <div className="SignUpContent">
       {/* Importing Navbar */}
       <Navbar button_text="Log In" redirect="login" />
 
       {/* SignUp */}
-      <div className="container">
+      <div className="signUpContainer">
         <div className="LogBox">
           <span></span>
 
@@ -109,19 +161,6 @@ const Signup = ({ button_text }) => {
                 />
               </div>
 
-              {/* Input Role: like Admin */}
-              <div>
-                <label>Role</label>
-                <input
-                  className="input"
-                  name="role"
-                  value={inputs.role}
-                  onChange={handleChange}
-                  type="name"
-                  required
-                />
-              </div>
-
               {/* Input Phone Number */}
               <div>
                 <label>Phone Number</label>
@@ -167,13 +206,14 @@ const Signup = ({ button_text }) => {
             <button
               type="submit"
               className="submit"
-              onClick={directTo}
+              onClick={handleSubmit}
               disabled={isLoading}
             >
               {isLoading ? <div className="loader"></div> : button_text}
             </button>
           </form>
         </div>
+      </div>
       </div>
     </>
   );
