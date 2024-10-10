@@ -32,7 +32,7 @@ const Login = ({ button_text }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signin",
+        "https://agnivbackend-production.up.railway.app/auth/signin",
         {
           email: inputs.email,
           password: inputs.password,

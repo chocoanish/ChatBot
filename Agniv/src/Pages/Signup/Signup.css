@@ -83,6 +83,7 @@
   margin-top: 5px;
   padding: 15px;
   outline: none;
+  cursor: url(../../assets/Text_cursor.png), auto;
 }
 
 /* Submit button styles */

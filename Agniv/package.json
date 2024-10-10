@@ -22,6 +22,7 @@
     "react-hot-toast": "^2.4.1",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.26.2",
+    "react-streaming": "^0.3.43",
     "react-syntax-highlighter": "^15.5.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",

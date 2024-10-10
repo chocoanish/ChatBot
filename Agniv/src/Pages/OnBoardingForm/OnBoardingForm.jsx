@@ -118,7 +118,7 @@ const OnBoardingForm = () => {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://philosophical-karlene-garibrath-9eb650cd.koyeb.app/auth/signup",
+      url: "https://agnivbackend-production.up.railway.app/auth/signup",
       headers: {
         "Content-Type": "application/json",
       },
