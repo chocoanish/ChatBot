@@ -8,15 +8,13 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 
 const Dashboard = () => {
-  const [isAnimating, setIsAnimating] = useState(true);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isRendering, setIsRendering] = useState(false);
   const [startConversation, setStartConversation] = useState(false);
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState([]);
   const conversationsRef = useRef(null);
   const textareaRef = useRef(null);
-
-  const [markdownContent, setMarkdownContent] = useState('');
 
   const userId = localStorage.getItem("id");
   const token = localStorage.getItem("Bearer_Token");
@@ -38,6 +36,7 @@ const Dashboard = () => {
   };
 
   const handleQuery = (e) => {
+    setIsAnimating(true);
     e.preventDefault();
     if (query.trim() === "") return;
 
@@ -48,8 +47,6 @@ const Dashboard = () => {
     ]);
     handleStreamResponse(query, userId, token);
     setQuery("");
-
-    // setIsAnimating(true);
   };
 
   const clearLocalStorage = () => {
@@ -112,7 +109,7 @@ const Dashboard = () => {
                   });
                 }
 
-                // setIsAnimating(true);
+               
                 setIsRendering(true);
                 return newMessages;
               });
@@ -133,6 +130,7 @@ const Dashboard = () => {
       ]);
     } finally {
       setIsRendering(false);
+      setIsAnimating(false);
     }
   };
   useEffect(() => {
@@ -185,13 +183,23 @@ const Dashboard = () => {
             </div>
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.type}`}>
-              <ReactMarkdown children={message.content} breaks/>
-                {message.type === "assistant" && isRendering && (
-                  <span className="text_rendering">
-                    <span></span>
-                  </span>
-                )}
-              </div>
+      <ReactMarkdown
+        components={{
+          div: ({ node, ...props }) => (
+            <div {...props}>
+              {props.children}
+              {message.type === "assistant" && isRendering && (
+                <span className="text_rendering">
+                  <span></span>
+                </span>
+              )}
+            </div>
+          ),
+        }}
+      >
+        {message.content}
+      </ReactMarkdown>
+    </div>
             ))}
             {isAnimating &&
               messages[messages.length - 1]?.type !== "assistant" && (

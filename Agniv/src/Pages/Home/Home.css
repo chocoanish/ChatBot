@@ -285,12 +285,9 @@
 }
 
 .card{
-  /* background-color: rgba(48, 50, 65, 0.3); */
   background: url(../../assets/Card_Background.jpg);
   width: 300px;
   height: 600px;
-  /* border-top-left-radius: 200px;
-  border-top-right-radius: 200px; */
   border-radius: 200px 200px 15px 15px;
   margin-bottom: 50px;
   transition: all 0.2s ease-out;

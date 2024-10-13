@@ -9,7 +9,7 @@ import  useErrorHandler  from "../../hooks/useErrorHandler";
 const Login = ({ button_text }) => {
   const handleError = useErrorHandler();
 
-  //Functions4
+  //Functions
   const [userId, setUserId] = useState("");
   const [inputs, setInputs] = useState({
     email: "",

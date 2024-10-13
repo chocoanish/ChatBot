@@ -152,14 +152,6 @@
   width: calc(100% - 90px);
 }
 
-/* Gradient background for LogBox */
-/* 
-background: linear-gradient(315deg, #ffbc00, #ff0058)
-background: linear-gradient(315deg, #03a9f4, #ff0058) */
-/* .LogBox:nth-child(2):before,
-.LogBox:nth-child(2):after,
-.LogBox:nth-child(3):before,
-.LogBox:nth-child(3):after */
 
 
 .LogBox:nth-child(1):before,
